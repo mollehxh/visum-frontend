@@ -3,6 +3,7 @@ import { Header } from '~/shared/ui/header';
 import { SignUpPage } from '~/pages/sign-up';
 import { SignInPage } from '~/pages/sign-in';
 import { MainPage } from '~/pages/main';
+import { RoomPage } from '~/pages/room';
 import 'normalize.css';
 
 export const Application = () => {
@@ -11,7 +12,8 @@ export const Application = () => {
       <AppShell top={<Header />}>
         {/* <SignUpPage /> */}
         {/* <SignInPage /> */}
-        <MainPage />
+        {/* <MainPage /> */}
+        <RoomPage />
       </AppShell>
     </>
   );
