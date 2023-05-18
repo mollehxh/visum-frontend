@@ -1,7 +1,8 @@
-import { SignUpPage } from '~/pages/sign-up';
-import { SignInPage } from '~/pages/sign-in';
 import { AppShell } from '~/shared/ui/app-shell';
 import { Header } from '~/shared/ui/header';
+import { SignUpPage } from '~/pages/sign-up';
+import { SignInPage } from '~/pages/sign-in';
+import { MainPage } from '~/pages/main';
 import 'normalize.css';
 
 export const Application = () => {
@@ -9,7 +10,8 @@ export const Application = () => {
     <>
       <AppShell top={<Header />}>
         {/* <SignUpPage /> */}
-        <SignInPage />
+        {/* <SignInPage /> */}
+        <MainPage />
       </AppShell>
     </>
   );
