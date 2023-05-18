@@ -12,6 +12,8 @@
   "dependencies": {
     "@ant-design/icons": "^5.1.0",
     "antd": "^5.5.0",
+    "atomic-router": "^0.8.0",
+    "atomic-router-react": "^0.8.3",
     "core-js": "^3.28.0",
     "effector": "^22.5.0",
     "effector-react": "^22.4.0",

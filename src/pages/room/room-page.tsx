@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Card, Row, Col, Input, Button, List, Avatar } from 'antd';
 import { LeftOutlined } from '@ant-design/icons';
+import { controls } from '~/shared/routing';
 
 interface User {
   id: string;
@@ -45,6 +46,7 @@ export const RoomPage: React.FC<RoomPageProps> = () => {
           marginBottom: '24px',
         }}
         type="link"
+        onClick={() => controls.back()}
       >
         <LeftOutlined />
         Back

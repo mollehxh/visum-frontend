@@ -1,6 +1,7 @@
 import { Input, Button, Card, Typography, Col, Row } from 'antd';
 import { LinkOutlined } from '@ant-design/icons';
 import { useState } from 'react';
+import { routes } from '~/shared/routing';
 
 export const MainPage = () => {
   const [cards, setCards] = useState(cardData);
@@ -49,6 +50,9 @@ export const MainPage = () => {
           {cards.map((card) => (
             <Col key={card.id} xs={24} sm={12} md={8} lg={8} xl={8}>
               <Card
+                onClick={() => {
+                  routes.room.open();
+                }}
                 style={{ width: '100%', cursor: 'pointer' }}
                 cover={
                   <img
