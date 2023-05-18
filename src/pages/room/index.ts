@@ -1,7 +1,13 @@
+import { createRouteView } from 'atomic-router-react';
+import { authorizedRoute, currentRoute } from './model';
 import { RoomPage } from './room-page';
-import { routes } from '~/shared/routing';
+import { PageLoader } from '~/shared/ui';
 
 export const RoomRoute = {
-  view: RoomPage,
-  route: routes.room,
+  route: currentRoute,
+  view: createRouteView({
+    route: authorizedRoute,
+    view: RoomPage,
+    otherwise: PageLoader,
+  }),
 };

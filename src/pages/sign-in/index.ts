@@ -1,7 +1,13 @@
+import { anonymousRoute, currentRoute } from './model';
+import { createRouteView } from 'atomic-router-react';
 import { SignInPage } from './sign-in-page';
-import { routes } from '~/shared/routing';
+import { PageLoader } from '~/shared/ui';
 
 export const SignInRoute = {
-  view: SignInPage,
-  route: routes.signIn,
+  route: currentRoute,
+  view: createRouteView({
+    route: anonymousRoute,
+    view: SignInPage,
+    otherwise: PageLoader,
+  }),
 };

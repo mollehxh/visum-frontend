@@ -1,7 +1,13 @@
+import { createRouteView } from 'atomic-router-react';
 import { MainPage } from './main-page';
-import { routes } from '~/shared/routing';
+import { authorizedRoute, currentRoute } from './model';
+import { PageLoader } from '~/shared/ui';
 
 export const MainRoute = {
-  view: MainPage,
-  route: routes.main,
+  route: currentRoute,
+  view: createRouteView({
+    route: authorizedRoute,
+    view: MainPage,
+    otherwise: PageLoader,
+  }),
 };
