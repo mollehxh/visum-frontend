@@ -1,3 +1,10 @@
+import { SignUpPage } from '~/pages/sign-up';
+import 'normalize.css';
+
 export const Application = () => {
-  return <h1>Hello, world!</h1>;
+  return (
+    <>
+      <SignUpPage />
+    </>
+  );
 };
