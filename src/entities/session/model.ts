@@ -12,6 +12,8 @@ import {
   RouteParamsAndQuery,
   chainRoute,
 } from 'atomic-router';
+import { getSession } from '~/shared/api/mockapi';
+import { persist } from 'effector-storage/local';
 
 enum AuthStatus {
   Initial = 0,
@@ -20,12 +22,16 @@ enum AuthStatus {
   Authenticated,
 }
 
-const getSessionFx = createEffect(async () => {
-  await new Promise((res, rej) => setTimeout(res, 1000));
-});
+export const getSessionFx = createEffect(getSession);
 
 const $session = createStore<any>(null);
 const $authenticationStatus = createStore(AuthStatus.Initial);
+export const $token = createStore('');
+
+persist({
+  store: $token,
+  key: 'token',
+});
 
 $session.on(getSessionFx.doneData, (_, session) => session);
 
@@ -61,8 +67,9 @@ export function chainAuthorized<Params extends RouteParams>(
 
   sample({
     clock: sessionCheckStarted,
-    source: $authenticationStatus,
-    filter: (status) => status === AuthStatus.Initial,
+    source: { status: $authenticationStatus, token: $token },
+    filter: ({ status }) => status === AuthStatus.Initial,
+    fn: ({ token }) => token,
     target: getSessionFx,
   });
 
@@ -110,8 +117,9 @@ export function chainAnonymous<Params extends RouteParams>(
 
   sample({
     clock: sessionCheckStarted,
-    source: $authenticationStatus,
-    filter: (status) => status === AuthStatus.Initial,
+    source: { status: $authenticationStatus, token: $token },
+    filter: ({ status }) => status === AuthStatus.Initial,
+    fn: ({ token }) => token,
     target: getSessionFx,
   });
 
