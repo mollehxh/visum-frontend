@@ -9,7 +9,7 @@ import { appStarted } from '~/shared/config/init';
 
 export const routes = {
   main: createRoute(),
-  room: createRoute(),
+  room: createRoute<{ roomId: string }>(),
   signIn: createRoute(),
   signUp: createRoute(),
 };
@@ -23,7 +23,7 @@ export const router = createHistoryRouter({
       route: routes.main,
     },
     {
-      path: '/room',
+      path: '/room/:roomId',
       route: routes.room,
     },
     {

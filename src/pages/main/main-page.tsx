@@ -3,9 +3,12 @@ import { LinkOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import { routes } from '~/shared/routing';
 import { AppShell, Header } from '~/shared/ui';
+import { $videoUrl, submitUrl, videoUrlChanged } from './model';
+import { useUnit } from 'effector-react';
 
 export const MainPage = () => {
   const [cards, setCards] = useState(cardData);
+  const videoUrl = useUnit($videoUrl);
 
   const addCard = () => {
     const newCard = {
@@ -36,11 +39,15 @@ export const MainPage = () => {
             <Input
               size="large"
               style={{ flex: '1 1 auto' }}
-              prefix={<LinkOutlined />}
+              value={videoUrl}
+              onChange={(evt) => videoUrlChanged(evt.currentTarget.value)}
+              prefix={<LinkOutlined rev />}
               placeholder="Video URL to create room..."
             />
             <Button
-              onClick={addCard}
+              onClick={() => {
+                submitUrl();
+              }}
               size="large"
               type="primary"
               style={{ marginLeft: '12px' }}
@@ -53,7 +60,7 @@ export const MainPage = () => {
               <Col key={card.id} xs={24} sm={12} md={8} lg={8} xl={8}>
                 <Card
                   onClick={() => {
-                    routes.room.open();
+                    routes.room.open({ roomId: '1' });
                   }}
                   style={{ width: '100%', cursor: 'pointer' }}
                   cover={
